@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+        <meta content='the blog' property='og:title' />
+      <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+      <meta content='text/html; charset=utf-8' http-equiv='content-type' />
+      <meta content="http://muan.co/images/og.png" property="og:image" />
+
+  <meta content='/python.html' property='og:url' />
+  <meta content="git教程 git init #初始化一个仓库 添加文件至git仓库分为两步： git add <file>将文件添加到暂存区 git add .添加全部文件 git commit -m 'say ..." property='og:description' />
+  <meta content="article" property="og:type" />
+
+    <title>the blog</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+    <link href='/theme/images/fav.png' rel='shortcut icon'>
+    <link rel="stylesheet" href="/theme/syntax.css" type="text/css" />
+    <link rel="stylesheet" href="/theme/style.css" type="text/css" />
+    <link rel="stylesheet" href="/theme/responsive.css" type="text/css" />
+    <link rel="stylesheet" href="/theme/stuff/style.css" type="text/css" />
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <div class="content-wrapper">
+        <section class="content">
+  <p><a href="/" class="hex-shape big"></a></p>
+  <hr />
+  <article>
+    <h3 class="reset bold a">python!!</h3>
+      <small class="datetime muted">2015-09-28</small>
+    <hr>
+    <h1>git教程</h1>
+<ul>
+<li><code>git init</code> #初始化一个仓库</li>
+<li>添加文件至git仓库分为两步：<blockquote>
+<ul>
+<li><code>git add &lt;file&gt;</code>将文件添加到暂存区</li>
+<li><code>git add .</code>添加全部文件</li>
+</ul>
+</blockquote>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li><code>git commit -m 'say something'</code>把暂存区的所有内容提交到当前分支</li>
+</ul>
+</blockquote>
+<ul>
+<li><code>git status</code> #随时掌握仓库当前的状态，可以知道某文件被修改，无法具体得知修改了什么</li>
+<li><code>git diff &lt;file&gt;</code> #可以查看某文件具体修改了什么内容</li>
+</ul>
+<div class="highlight"><pre><span class="nv">$ </span>git diff readme.txt 
+diff --git a/readme.txt b/readme.txt
+index 46d49bf..9247db6 100644
+--- a/readme.txt
++++ b/readme.txt
+@@ -1,2 +1,2 @@
+-Git is a version control system.
++Git is a distributed version control system.
+ Git is free software.
+</pre></div>
+
+
+<ul>
+<li><code>git log</code> #显示从最近到最远的提交日志，即<code>git commit -m '提交日志'</code>的内容</li>
+<li><code>git log --pretty=oneline</code> #简略显示提交内容</li>
+</ul>
+<h2><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013744142037508cf42e51debf49668810645e02887691000">版本库回退</a></h2>
+<ul>
+<li><code>HEAD</code>当前版本 <code>HEAD^</code>上一个版本 <code>HEAD^^</code>上上一个版本   </li>
+<li><code>git reset --hard HEAD^</code> #回退到上一个版本</li>
+<li><code>git reflog</code> #记录每一次命令，即命令历史</li>
+<li>欲知更多回退版本的技巧，参考<a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/0013744142037508cf42e51debf49668810645e02887691000">版本回退</a></li>
+<li>电脑下的learngit文件夹为<strong>工作区</strong>（<strong>Working Directory</strong>），里面有一个.git的隐藏目录，为<strong>版本库(respository)</strong>，版本库下有一个<strong>暂存区</strong>(<strong>stage或者index</strong>)，还有Git为我们自动创建的第一个<strong>分支master</strong>，以及指向<strong>master</strong>的一个<strong>指针</strong>叫<strong>HEAD</strong>。</li>
+</ul>
+<h2><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001374831943254ee90db11b13d4ba9a73b9047f4fb968d000">工作区回退</a></h2>
+<ul>
+<li><code>git checkout -- readme.txt</code>#把readme.txt文件在<strong>工作区</strong>的修改全部撤销，也可用于把误删的文件恢复</li>
+</ul>
+<h2><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001374831943254ee90db11b13d4ba9a73b9047f4fb968d000">暂存区回退</a></h2>
+<ul>
+<li><code>git reset HEAD &lt;file&gt;</code> #可以把<strong>暂存区</strong>的修改撤销掉(<strong>unstage</strong>),</li>
+<li>然后再丢弃<strong>工作区</strong>的修改<code>git checkout -- &lt;file&gt;</code></li>
+</ul>
+<h2>删除commit的文件</h2>
+<blockquote>
+<ul>
+<li><code>git rm test.txt</code></li>
+<li><code>git commit -m 'remove test.txt'</code></li>
+</ul>
+</blockquote>
+<h2>添加远程仓库</h2>
+<ul>
+<li><code>git remote add origin git@github.com:hondajojo/learn.git</code></li>
+<li><code>git push -u origin master</code> #第一次推送<strong>master分支</strong>内容至远程仓库</li>
+<li><code>git push origin master</code> #此后，每次提交后，用此命令推送最新更改</li>
+</ul>
+<h2>tips</h2>
+<p>你也许还注意到，GitHub给出的地址不止一个，还可以用<code>https://github.com/michaelliao/gitskills.git</code>这样的地址。实际上，Git支持多种协议，默认的git://使用ssh，但也可以使用https等其他协议。
+<strong>使用https除了速度慢以外，还有个最大的麻烦是每次推送都必须输入口令</strong>，但是在某些只开放http端口的公司内部就无法使用ssh协议而只能用https。</p>
+<h2>创建和合并分支</h2>
+<ul>
+<li><code>git branch</code> #查看分支</li>
+<li><code>git branch &lt;name&gt;</code> #创建分支</li>
+<li><code>git checkout &lt;name&gt;</code> #切换分支</li>
+<li><code>git checkout -b &lt;name&gt;</code> #创建及切换分支，-b(branch)</li>
+<li><code>git merge &lt;name&gt;</code> #合并某分支到当前分支</li>
+<li><code>git branch -d &lt;name&gt;</code> #删除分支</li>
+</ul>
+<h2>使用github</h2>
+<ul>
+<li>进入<code>github</code>,创建仓库，<code>creat a new repository</code></li>
+<li>在本地创建ssh key，<code>ssh-keygen -t rsa -C 'cm1130335361@gmail.com'</code> #生成在/home/mako/.ssh文件下</li>
+<li>回到github，进入Account Settings,左侧选择SSH Keys，输入/home/mako/.ssh/id_rsa.pub里的内容</li>
+<li><code>ssh -T git@github.com</code>来测试，成功后会提示<code>Hi hondajojo! You've successfully authenticated, but GitHub does not provide shell access.</code></li>
+<li><code>git remote add origin git@github.com:hondajojo/gitnotes.git</code></li>
+<li><code>git add 'file'</code></li>
+<li><code>git commit -m 'say something'</code></li>
+<li><code>git push -u origin master</code> #第一次push，要加参数<code>-u</code>，之后只需<code>git push origin master</code></li>
+</ul>
+<h2>待续</h2>
+  </article>
+    <div class="signoff">
+      <p>
+        Til next time,<br/>
+        <div class="avatar-wrapper"><img src="/theme/images/avatar.png" class="avatar" /></div>
+        maijver
+        <span class="muted">at 15:09</span>
+      </p>
+    </div>
+        </section>
+      </div>
+
+      <footer>
+        <hr />
+        <p class="small bold">
+          © maijver. All Rights Reserved.<br />
+          Powered by <a href="https://github.com/getpelican/pelican"  target="_blank">Pelican</a>. Theme by <a href="https://github.com/lord63/pelican-scribble-hex"  target="_blank">Pelican-scribble-hex</a>.
+        </p>
+      <div class="hex-shape small muted"></div>
+      </footer>
+
+    </div>
+    <script src='/theme/jquery.js' type='text/javascript'></script>
+    <script src='/theme/pd.js' type='text/javascript'></script>
+    <script src='/theme/stuff.js' type='text/javascript'></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <!-- google analytics -->
+    <script type='text/javascript'>
+    //<![CDATA[
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    //]]>
+    </script>
+  </body>
+</html>

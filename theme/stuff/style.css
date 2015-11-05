@@ -205,7 +205,7 @@ a, .link {
   -ms-transition: 0.5s;
   -o-transition: 0.5s;
   transition: 0.5s;
-  /* color: #FF5D56; */ }
+}
   a.big-button, .link.big-button {
     background-color: #ff5d56;
     color: #fff;

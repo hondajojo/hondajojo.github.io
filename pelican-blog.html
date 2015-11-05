@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+        <meta content='這世界上沒有不寂寞的大人' property='og:title' />
+      <meta content='width=device-width, initial-scale=1.0, user-scalable=no' name='viewport'>
+      <meta content='text/html; charset=utf-8' http-equiv='content-type' />
+      <meta content="http://muan.co/images/og.png" property="og:image" />
+
+  <meta content='http://hondajojo.github.io/pelican-blog.html' property='og:url' />
+  <meta content="Pelican Pelican是python写的静态博客生成器，之前试过几次想在github pages上搭建，都失败了，现在总结一下。 坑 如果你的github帐号为xxx,那么你的github ..." property='og:description' />
+  <meta content="article" property="og:type" />
+
+    <title>這世界上沒有不寂寞的大人</title>
+
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://hondajojo.github.io/theme/images/fav.png' rel='shortcut icon'>
+    <link rel="stylesheet" href="http://hondajojo.github.io/theme/syntax.css" type="text/css" />
+    <link rel="stylesheet" href="http://hondajojo.github.io/theme/style.css" type="text/css" />
+    <link rel="stylesheet" href="http://hondajojo.github.io/theme/responsive.css" type="text/css" />
+    <link rel="stylesheet" href="http://hondajojo.github.io/theme/stuff/style.css" type="text/css" />
+
+  </head>
+  <body>
+    <div class="wrapper">
+
+      <div class="content-wrapper">
+        <section class="content">
+  <p><a href="http://hondajojo.github.io/" class="hex-shape big"></a></p>
+  <hr />
+  <article>
+    <h3 class="reset bold a">Pelican</h3>
+      <small class="datetime muted">2015-11-05</small>
+    <hr>
+    <h2>Pelican</h2>
+<p>Pelican是python写的静态博客生成器，之前试过几次想在github pages上搭建，都失败了，现在总结一下。</p>
+<h3>坑</h3>
+<blockquote>
+<ul>
+<li>如果你的github帐号为xxx,那么你的github pages的名字只能为<code>xxx.github.io</code>,所以新建的<code>repository</code>为<code>xxx.github.io</code>之前在这里踩了很久的坑，一直部署不成功。</li>
+<li>使用<code>pelican-quickstart</code>时遇到下面这个选项，最好选Y，之后可以使用<code>make html</code> &amp; <code>make serve</code></li>
+</ul>
+</blockquote>
+<div class="highlight"><pre>&gt; Do you want to generate a Fabfile/Makefile to automate generation and publishing? (Y/n)
+</pre></div>
+
+
+<blockquote>
+<ul>
+<li>.md文章都是放在<code>content</code>目录下，利用<code>make html</code>生成的html在<code>output</code>下，而push到github上东西也只是<code>output</code>文件夹里的文件</li>
+</ul>
+</blockquote>
+<h3>过程</h3>
+<div class="highlight"><pre># 安装
+$ sudo pip install pelican markdown
+
+# 新建目录
+$ mkdir blog
+$ cd blog
+
+# 生成一系列目录
+$ pelican-quickstart
+</pre></div>
+
+
+<p>文本开头格式</p>
+<div class="highlight"><pre><span class="n">Title</span><span class="o">:</span> <span class="n">test</span>
+<span class="n">Date</span><span class="o">:</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">26</span> <span class="mi">15</span><span class="o">:</span><span class="mi">29</span><span class="o">:</span><span class="mi">01</span>
+<span class="n">Modified</span><span class="o">:</span> <span class="mi">2015</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">26</span> <span class="mi">15</span><span class="o">:</span><span class="mi">29</span><span class="o">:</span><span class="mi">01</span>
+<span class="n">Category</span><span class="o">:</span> <span class="n">tech</span>
+<span class="n">Tags</span><span class="o">:</span> <span class="n">python</span><span class="o">,</span><span class="n">test</span>
+<span class="n">Slug</span><span class="o">:</span> <span class="n">test</span>
+<span class="n">Author</span><span class="o">:</span> <span class="n">chenium</span>
+</pre></div>
+
+
+<p>生成静态页面</p>
+<div class="highlight"><pre># 有改动都要用这个命令重新生成一遍
+make html
+
+# 本地预览 localhost:8000
+make serve
+</pre></div>
+
+
+<p>修改配置文件<code>pelicanconf.py</code></p>
+<div class="highlight"><pre># 修改主题
+
+THEME = &#39;pelican-themes/pelican-scribble-hex&#39;
+</pre></div>
+
+
+<p>添加disqus支持</p>
+<blockquote>
+<ul>
+<li>登陆disqus，右上角齿轮下拉框选择<code>Add Disqus To Site</code></li>
+<li>设置一个名字，假如为<code>qwer</code>，该名字要添加到<code>pelicanconf.py</code>里<code>DISQUS_SITENAME = u'qwer'</code></li>
+<li>进入<code>https://qwer.disqus.com/admin/settings/advanced/</code>，Trusted Domains里填入你的网站<code>xxx.github.io</code></li>
+</ul>
+</blockquote>
+<h3>待补充</h3>
+  </article>
+    <div class="signoff">
+      <p>
+        Til next time,<br/>
+        <div class="avatar-wrapper"><img src="http://hondajojo.github.io/theme/images/avatar.png" class="avatar" /></div>
+        maijver
+        <span class="muted">at 11:11</span>
+      </p>
+    </div>
+    <hr />
+    <div class="block">
+      <div id="disqus_thread"></div>
+      <script type="text/javascript">
+        var disqus_shortname = "hondajojo";
+        (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+        </section>
+      </div>
+
+      <footer>
+        <hr />
+        <p class="small bold">
+          © maijver. All Rights Reserved.<br />
+          Powered by <a href="https://github.com/getpelican/pelican"  target="_blank">Pelican</a>. Theme by <a href="https://github.com/lord63/pelican-scribble-hex"  target="_blank">Pelican-scribble-hex</a>.
+        </p>
+      <div class="hex-shape small muted"></div>
+      </footer>
+
+    </div>
+    <script src='http://hondajojo.github.io/theme/jquery.js' type='text/javascript'></script>
+    <script src='http://hondajojo.github.io/theme/pd.js' type='text/javascript'></script>
+    <script src='http://hondajojo.github.io/theme/stuff.js' type='text/javascript'></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <!-- google analytics -->
+    <script type='text/javascript'>
+    //<![CDATA[
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    //]]>
+    </script>
+  </body>
+</html>

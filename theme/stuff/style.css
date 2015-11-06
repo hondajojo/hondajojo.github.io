@@ -251,6 +251,10 @@ hr {
 article, .pagination {
   max-width: 650px; }
 
+article a {
+	color: #FF5D56;
+}
+
 article h3 {
   line-height: 1em; }
 article blockquote {
